@@ -12,7 +12,8 @@ export function configureStore(history=hashHistory, initialState=undefined) {
         compose(
             applyMiddleware(
                 routerMiddleware(history)
-            )
+            ),
+            window.devToolsExtension ? window.devToolsExtension() : (f) => f //noop function equivalent
         )
     );
 

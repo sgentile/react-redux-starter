@@ -1,2 +1,3 @@
-export const LOAD_USERS = 'LOAD_USERS';
-export const ADD_USER   = 'ADD_USER';
+export const LOAD_TODOS = 'LOAD_TODOS';
+export const ADD_TODO   = 'ADD_TODO';
+export const TODO_STATUS_CHANGE = 'TODO_STATUS_CHANGE';
