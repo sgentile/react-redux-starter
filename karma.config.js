@@ -31,10 +31,6 @@ module.exports = (config) => {
             plugins: [
                 new webpack.ProvidePlugin({
                     "React": "react"
-                    // $: "jquery",
-                    // jQuery: "jquery",
-                    // "window.jQuery": "jquery",
-                    // "window.$": "jquery"
                 }),
                 new ExtractTextPlugin('/[name].css', {disabled: true}),
                 new webpack.DefinePlugin({__VERSION__: JSON.stringify(webpackconfig.module.VERSION)})
