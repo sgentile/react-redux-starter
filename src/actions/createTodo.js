@@ -1,8 +1,10 @@
 import * as ACTION from './actionTypes';
 
-export default function createTodo(todo) {
+const createTodo =(todo) => {
     return {
         type: ACTION.ADD_TODO,
         todo
     }
-}
+};
+
+export default createTodo;

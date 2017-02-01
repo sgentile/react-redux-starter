@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import {createTodo, getTodos, onTodoStatusChange} from '../../actions';
+import {createTodo, getTodos, onTodoStatusChange, onDeleteToDo} from '../../actions';
 
 import Todos from './Todos';
 import AddTodo from './AddTodo';
@@ -12,10 +12,15 @@ class TodosContainer extends Component{
     constructor(props) {
         super(props);
         this.onTodoStatusChange = this.onTodoStatusChange.bind(this);
+        this.onDeleteToDo = this.onDeleteToDo.bind(this);
     }
 
     onTodoStatusChange (todo) {
         this.props.onTodoStatusChange(todo);
+    };
+
+    onDeleteToDo (id) {
+      this.props.onDeleteToDo(id);
     };
 
     render(){
@@ -33,7 +38,7 @@ class TodosContainer extends Component{
                 </Row>
                 <Row>
                     <Col>
-                        <Todos todos={this.props.todos} onTodoStatusChange={this.onTodoStatusChange}/>
+                        <Todos todos={this.props.todos} onTodoStatusChange={this.onTodoStatusChange} deleteToDo={this.onDeleteToDo}/>
                     </Col>
                 </Row>
             </Grid>
@@ -52,6 +57,7 @@ export default connect(
     select, {
         createTodo,
         getTodos,
-        onTodoStatusChange
+        onTodoStatusChange,
+        onDeleteToDo
     } // comma delimited list of actionCreators
 )(TodosContainer);

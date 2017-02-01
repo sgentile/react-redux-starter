@@ -2,10 +2,21 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { hashHistory} from 'react-router';
 import rootReducer from '../reducers/rootReducer';
+import {loadState, saveState} from '../utils/localStorage';
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
+const initialState = {
+  todosState: {
+    nextId: 3,
+    todos: [
+      {id: 1, name: 'Take out trash', completed: true},
+      {id: 2, name: 'Wash dishes', completed: false}
+    ]
+  }
+};
 
-export function configureStore(history=hashHistory, initialState=undefined) {
+const persistedState = loadState(initialState);
+console.log(persistedState);
+export function configureStore(history=hashHistory, initialState=persistedState) {
     const store = createStore(
         rootReducer,
         initialState,
@@ -17,9 +28,11 @@ export function configureStore(history=hashHistory, initialState=undefined) {
         )
     );
 
-    // store.subscribe(()=>{
-    //     localStorage.setItem('reduxState', JSON.stringify(store.getState().usersState))
-    // });
+    store.subscribe(()=>{
+      saveState({
+        todosState: store.getState().todosState
+      });
+    });
 
     return store;
 }

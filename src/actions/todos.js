@@ -1,7 +1,9 @@
 import * as ACTION from './actionTypes';
 
-export default function getAllTodos() {
+const getAllTodos = () => {
     return {
         type: ACTION.LOAD_TODOS
     }
-}
+};
+
+export default getAllTodos;

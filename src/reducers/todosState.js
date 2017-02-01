@@ -1,14 +1,7 @@
+import React from 'react';
 import * as ACTION from '../actions/actionTypes';
 
-const initialState = {
-    nextId: 3,
-    todos: [
-        {id: 1, name: 'Take out trash', completed: true},
-        {id: 2, name: 'Wash dishes', completed: false}
-    ]
-};
-
-const todosState = (state = initialState, action) => {
+const todosState = (state = {}, action) => {
     console.log(state);
     switch(action.type){
         case  ACTION.LOAD_TODOS: {
@@ -28,6 +21,14 @@ const todosState = (state = initialState, action) => {
                 ]
             })
         }
+
+      case ACTION.DELETE_TODO: {
+        return Object.assign({}, state, {
+          todos: [
+            ...state.todos.filter((todo) => todo.id !== action.id)
+          ]
+        })
+      }
 
         case ACTION.TODO_STATUS_CHANGE: {
             return Object.assign({}, state, {

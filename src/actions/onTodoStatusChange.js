@@ -1,8 +1,10 @@
 import * as ACTION from './actionTypes';
 
-export default function onTodoStatusChange(todo) {
+const onTodoStatusChange = (todo) => {
     return {
         type: ACTION.TODO_STATUS_CHANGE,
         todo
     }
-}
+};
+
+export default onTodoStatusChange;
