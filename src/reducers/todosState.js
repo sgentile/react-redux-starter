@@ -1,5 +1,6 @@
 import React from 'react';
 import * as ACTION from '../actions/actionTypes';
+import {v4}  from 'node-uuid';
 
 const todosState = (state = {}, action) => {
     console.log(state);
@@ -9,12 +10,12 @@ const todosState = (state = {}, action) => {
         }
 
         case ACTION.ADD_TODO: {
-            Object.assign({}, state, {nextId: state.nextId++});
+            //Object.assign({}, state, {nextId: state.nextId++});
             return Object.assign({}, state, {
                 todos: [
                     ...state.todos,
                     {
-                        id: state.nextId,
+                        id: v4(),
                         name: action.todo.name,
                         completed: false
                     }

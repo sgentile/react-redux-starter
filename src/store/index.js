@@ -2,11 +2,11 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { hashHistory} from 'react-router';
 import rootReducer from '../reducers/rootReducer';
+import thunk from 'redux-thunk';
 import {loadState, saveState} from '../utils/localStorage';
 
 const initialState = {
   todosState: {
-    nextId: 3,
     todos: [
       {id: 1, name: 'Take out trash', completed: true},
       {id: 2, name: 'Wash dishes', completed: false}
@@ -22,7 +22,7 @@ export function configureStore(history=hashHistory, initialState=persistedState)
         initialState,
         compose(
             applyMiddleware(
-                routerMiddleware(history)
+                thunk, routerMiddleware(history)
             ),
             window.devToolsExtension ? window.devToolsExtension() : (f) => f //noop function equivalent
         )
