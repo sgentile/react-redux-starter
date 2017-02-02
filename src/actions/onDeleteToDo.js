@@ -1,8 +1,7 @@
 import * as ACTION from './actionTypes';
 
 const onDeleteToDo = (id) => {
-  debugger;
-  return {
+   return {
     type: ACTION.DELETE_TODO,
     id
   }

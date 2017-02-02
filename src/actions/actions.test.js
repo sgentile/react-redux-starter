@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import getAllTodos from './todos';
 import onTodoStatusChange from './onTodoStatusChange';
 import createTodo from './createTodo';
+import onDeleteTodo from './onDeleteToDo';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -33,8 +34,9 @@ describe('actions', ()=>{
   it('should create an action to add todos and then reset the form', () =>{
     const todo = {name:'Sample todo'};
     const expectedActions = [
-      { todo: { name: 'Sample todo' }, type: 'ADD_TODO' },
+      { todo: { name: 'Sample todo' }, type: types.ADD_TODO },
         { meta: { form: 'addTodo' }, type: '@@redux-form/RESET' } ];
+
     const store = mockStore({
       todosState:{todos:[]}
     });
@@ -44,5 +46,15 @@ describe('actions', ()=>{
         expect(store.getActions()).toEqual(expectedActions);
 
       });
+  });
+
+  it('should create an action to delete todo', () => {
+    const id = 1;
+    const expectedAction = {
+      type: types.DELETE_TODO,
+      id
+    };
+
+    expect(onDeleteTodo(id)).toEqual(expectedAction);
   });
 });

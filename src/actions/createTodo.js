@@ -8,6 +8,8 @@ const addTodo = (todo) => {
     todo
   }
 };
+
+//redux-thunk...
 const createTodo =(todo) => {
   return (dispatch, getState) => {
     //simulate a network call
