@@ -10,11 +10,18 @@ const addTodo = (todo) => {
 };
 const createTodo =(todo) => {
   return (dispatch, getState) => {
-    dispatch(addTodo(todo));
+    //simulate a network call
+    return new Promise((resolve, reject) =>{
+      dispatch(addTodo(todo));
+      resolve();
+    }).then(() =>{
+      dispatch(reset('addTodo'));
+    });
+
     // return postWithToken('/api/validatePerson', {_id}, dispatch, getState, false).then((response) => {
     //   dispatch(onValidateSuccess(response.data));
     // }, (error) => dispatch(onValidateError(error)));
-    dispatch(reset('addTodo'));
+
   }
 };
 

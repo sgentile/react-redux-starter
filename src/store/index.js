@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import {loadState, saveState} from '../utils/localStorage';
 
 const initialState = {
-  todosState: {
+    todosState: {
     todos: [
       {id: 1, name: 'Take out trash', completed: true},
       {id: 2, name: 'Wash dishes', completed: false}
