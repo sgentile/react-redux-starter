@@ -2,7 +2,13 @@ import React from 'react';
 import * as ACTION from '../actions/actionTypes';
 import {v4}  from 'node-uuid';
 
-const todosState = (state = {}, action) => {
+const initialState = {
+  todosState: {
+    todos: []
+  }
+};
+
+const todosState = (state = initialState, action) => {
     console.log(state);
     switch(action.type){
         case  ACTION.LOAD_TODOS: {
